@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-    private int user_id;
-    private int question_id;
+    private int userID;
+    private int questionID;
     private String fname;
     private String sname;
     private String email;
@@ -16,15 +16,15 @@ public class User {
         this.email = email;
     }
 
-    public User(int user_id, int question_id, String fname, String sname, String email) {
-        this.user_id = user_id;
-        this.question_id = question_id;
+    public User(int userID, int questionID, String fname, String sname, String email) {
+        this.userID = userID;
+        this.questionID = questionID;
         this.fname = fname;
         this.sname = sname;
         this.email = email;
     }
-    public User(int question_id, String fname, String sname, String email) {
-        this.question_id = question_id;
+    public User(int questionID, String fname, String sname, String email) {
+        this.questionID = questionID;
         this.fname = fname;
         this.sname = sname;
         this.email = email;
@@ -48,12 +48,12 @@ public class User {
         this.sname = sname;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
-    public void setQuestion_id(int question_id) {
-        this.question_id = question_id;
+    public void setQuestionID(int questionID) {
+        this.questionID = questionID;
     }
 
     public void setFname(String fname) {
@@ -64,12 +64,12 @@ public class User {
         this.sname = sname;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserID() {
+        return userID;
     }
 
-    public int getQuestion_id() {
-        return question_id;
+    public int getQuestionID() {
+        return questionID;
     }
 
     public String getFname() {

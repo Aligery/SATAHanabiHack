@@ -9,16 +9,15 @@ import java.util.ArrayList;
 
 @RestController
 public class QuestionController {
-    private final String query = "SELECT*FROM question WHERE question_id<?";
+    private final String query = "SELECT*FROM question WHERE question_id < ?";
     private final String insert = "INSERT INTO question (question_id, question, user_id) VALUES (DEFAULT, ?, ?)";
-    @RequestMapping("/Question/get")
+    @RequestMapping(value = "/Question/get", method = RequestMethod.GET)
     public ArrayList<Question> getQuestion(@RequestParam(value="counter", defaultValue = "1") int counter)
     {
         ArrayList<Question> QuestionArray = new ArrayList<>();
         DBWorker WorkerWithDB = new DBWorker();
         try (Connection connection = WorkerWithDB.getConnection()) {
             try (PreparedStatement preparedStatement = WorkerWithDB.getConnection().prepareStatement(query)) {
-
                 preparedStatement.setInt(1, counter*50);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
@@ -38,8 +37,8 @@ public class QuestionController {
         }
         return QuestionArray;
     }
-    @RequestMapping(value = "/Question/add", method = RequestMethod.POST)
-    public void addQuestion(@RequestBody Question question) {
+    @RequestMapping(value = "/Question/add", method = RequestMethod.POST, headers="Accept=application/JSON")
+    public void addQuestion(Question question) {
         System.out.println("Something happening");
         //Теперь весь массив сгружаем в БД
         DBWorker WorkerWithDB = new DBWorker();

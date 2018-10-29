@@ -10,26 +10,27 @@ import java.util.ArrayList;
 @RestController
 public class UserController {
     private final static String insert = "INSERT INTO usertable (user_id, fname, sname, email, parrent_question_id) VALUES (DEFAULT, ?, ?, ?, ?)";
-    private final static String Query = "SELECT * FROM usertable WHERE user_id<?";
-    @RequestMapping("/Users/get")
+    private final static String Query = "SELECT * FROM usertable WHERE user_id < ?";
+    @RequestMapping(value = "/Users/get", method = RequestMethod.GET)
     public ArrayList<User> getUser(@RequestParam(value="counter", defaultValue = "1") int counter) //выводит по 50, 1*50, 2*50, 3*50 и т.д.
     {
         //тут надо реализовать подключение к БД через JDBC и выведение пользователей в зависимости от количества
         ArrayList<User> UsersFromDB= new ArrayList<>();
         DBWorker WorkerWithDB = new DBWorker();
-        try {
-            Statement statement = WorkerWithDB.getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery(Query);
-            while(resultSet.next())
-            {
-                User UserFromDB = new User(
-                        resultSet.getInt("user_id"), //UserID
-                        resultSet.getInt("parrent_question_id"), //QuestionID
-                        resultSet.getString("fname"), //fname
-                        resultSet.getString("sname"), // lname
-                        resultSet.getString("email") // email
-                );
-                UsersFromDB.add(UserFromDB);
+        try (Connection connection = WorkerWithDB.getConnection()) {
+            try (PreparedStatement preparedStatement = WorkerWithDB.getConnection().prepareStatement(Query)) {
+                preparedStatement.setInt(1, counter * 50);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    User UserFromDB = new User(
+                            resultSet.getInt("user_id"), //UserID
+                            resultSet.getInt("parrent_question_id"), //QuestionID
+                            resultSet.getString("fname"), //fname
+                            resultSet.getString("sname"), // lname
+                            resultSet.getString("email") // email
+                    );
+                    UsersFromDB.add(UserFromDB);
+                }
             }
         }
         catch (SQLException e)
@@ -38,8 +39,8 @@ public class UserController {
         }
         return UsersFromDB;
     }
-    @RequestMapping(value = "/Users/Add", method = RequestMethod.POST)
-    public void addUser(@RequestBody User user)
+    @RequestMapping(value = "/Users/Add", method = RequestMethod.POST, headers="Accept=application/JSON")
+    public void addUser(User user)
     {
         //System.out.println("Something happening");
         //Теперь весь массив сгружаем в БД
@@ -50,7 +51,7 @@ public class UserController {
                 preparedStatement.setString(1, user.getFname());
                 preparedStatement.setString(2, user.getSname());
                 preparedStatement.setString(3, user.getEmail());
-                preparedStatement.setInt(4, user.getQuestion_id());
+                preparedStatement.setInt(4, user.getQuestionID());
                 preparedStatement.execute();
             }
         } catch (SQLException e)
