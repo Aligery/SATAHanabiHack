@@ -51,7 +51,7 @@ public class UserController {
                 preparedStatement.setString(1, user.getFname());
                 preparedStatement.setString(2, user.getSname());
                 preparedStatement.setString(3, user.getEmail());
-                preparedStatement.setInt(4, user.getQuestionID());
+                preparedStatement.setInt(4, user.getParrentQuestionId());
                 preparedStatement.execute();
             }
         } catch (SQLException e)
