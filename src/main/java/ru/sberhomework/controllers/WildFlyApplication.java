@@ -1,6 +1,5 @@
-package Controllers;
+package ru.sberhomework.controllers;
 
-import CallablePOSTJSON.CallPostJSON;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +13,5 @@ public class WildFlyApplication  {
     public static void main(String[] args)
     {
         SpringApplication.run(WildFlyApplication.class, args);
-//        CallPostJSON callMayday = new CallPostJSON();
     }
 }

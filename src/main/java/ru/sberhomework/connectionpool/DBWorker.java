@@ -1,4 +1,4 @@
-package JDBCWorker;
+package ru.sberhomework.connectionpool;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ public class DBWorker { //Отдельный класс который хран�
     private final String password = "root";
     private final String HOSTNAME = "jdbc:postgresql://localhost:5432/HomeWork";
     private Connection connection;
-
+    // Реализовать пул бассейнов
     public Connection getConnection() {
         return connection;
     }

@@ -1,24 +1,24 @@
-package Bean;
+package ru.sberhomework.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Question {
-    private int question_id;
+    private int questionId;
     private String question;
-    private int user_id;
+    private int userId;
     public Question()
     {
 
     }
     public Question(int question_id, String question, int userID) {
-        this.question_id = question_id;
+        this.questionId = question_id;
         this.question = question;
-        user_id = userID;
+        userId = userID;
     }
 
     public int getQuestion_id() {
-        return question_id;
+        return questionId;
     }
 
     public String getQuestion() {
@@ -26,20 +26,20 @@ public class Question {
     }
 
     public int getUser_id() {
-        return user_id;
+        return userId;
     }
 
     @Override
     public String toString() {
         return "question{" +
-                "question_id=" + question_id +
+                "question_id=" + questionId +
                 ", question='" + question + '\'' +
-                ", user_id=" + user_id +
+                ", user_id=" + userId +
                 '}';
     }
 
     public void setQuestion_id(int question_id) {
-        this.question_id = question_id;
+        this.questionId = question_id;
     }
 
     public void setQuestion(String question) {
@@ -47,6 +47,6 @@ public class Question {
     }
 
     public void setUser_id(int user_id) {
-        this.user_id = user_id;
+        this.userId = user_id;
     }
 }

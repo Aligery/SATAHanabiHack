@@ -1,4 +1,4 @@
-package Bean;
+package ru.sberhomework.beans;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
