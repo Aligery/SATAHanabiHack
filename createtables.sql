@@ -1,8 +1,8 @@
-CREATE table question (INT PRIMARY KEY parrentQuestionId,
-                      VARCHAR(255) question,
-                      INT USER_ID);
-CREATE table usertable (INT PRIMARY KEY userId,
-                        VARCHAR(255) fname,
-                         VARCHAR(255) sname,
-                         VARCHAR(255) email,
-                         INT parrent_question_id);
+CREATE table question (question_id INT PRIMARY KEY,
+                      subject VARCHAR(255),
+                      question VARCHAR(255),
+                      user_id INT);
+CREATE table users_table (userId INT PRIMARY KEY,
+                         fName VARCHAR(255),
+                          sName VARCHAR(255),
+                          email VARCHAR(255));

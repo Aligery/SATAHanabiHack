@@ -1,4 +1,4 @@
-package ru.sberhomework.beans;
+package ru.sberhomework.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -17,7 +17,7 @@ public class Question {
         userId = userID;
     }
 
-    public int getQuestion_id() {
+    public int getQuestionId() {
         return questionId;
     }
 
@@ -25,7 +25,7 @@ public class Question {
         return question;
     }
 
-    public int getUser_id() {
+    public int getUserId() {
         return userId;
     }
 
@@ -38,7 +38,7 @@ public class Question {
                 '}';
     }
 
-    public void setQuestion_id(int question_id) {
+    public void setQuestionId(int question_id) {
         this.questionId = question_id;
     }
 
@@ -46,7 +46,7 @@ public class Question {
         this.question = question;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUserId(int user_id) {
         this.userId = user_id;
     }
 }

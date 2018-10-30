@@ -1,11 +1,14 @@
 package ru.sberhomework.connectionpool;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+@Configuration
 public class DBWorker { //Отдельный класс который хранит настройки подключения и делает подключение.
     private final String Username = "postgres";
     private final String password = "root";
@@ -13,12 +16,13 @@ public class DBWorker { //Отдельный класс который хран�
     private ComboPooledDataSource cpds;
     private Connection connection;
     // Реализовать пул бассейнов
+    @Bean
+    @Scope ("singleton")
     public Connection getConnection() {
         return connection;
     }
 
-    public DBWorker() //В ДБВоркере инциализируем бассейн
-    // открываем и записываем в connection объект из бассейна
+    public DBWorker()
     {
         ComboPooledDataSource cpds = new ComboPooledDataSource();
         cpds.setJdbcUrl(HOSTNAME);
@@ -35,6 +39,7 @@ public class DBWorker { //Отдельный класс который хран�
         }
         catch(SQLException e) {
             e.printStackTrace();
+            //drop 500
     }
     }
 }
