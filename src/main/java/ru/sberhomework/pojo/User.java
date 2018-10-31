@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     private int userId;
-    private int parentQuestionId;
     private String fName;
     private String sName;
     private String email;
@@ -16,25 +15,16 @@ public class User {
         this.email = email;
     }
 
-    public User(int userId, int parentQuestionId, String fName, String sName, String email) {
+    public User(int userId, String fName, String sName, String email) {
         this.userId = userId;
-        this.parentQuestionId = parentQuestionId;
         this.fName = fName;
         this.sName = sName;
         this.email = email;
     }
-    public User(int parentQuestionId, String fName, String sName, String email) {
-        this.parentQuestionId = parentQuestionId;
-        this.fName = fName;
-        this.sName = sName;
-        this.email = email;
-    }
-
     public User()
     {
 
     }
-
     public String getEmail() {
         return email;
     }
@@ -52,9 +42,6 @@ public class User {
         this.userId = userId;
     }
 
-    public void setParentQuestionId(int parentQuestionId) {
-        this.parentQuestionId = parentQuestionId;
-    }
 
     public void setfName(String fName) {
         this.fName = fName;
@@ -66,10 +53,6 @@ public class User {
 
     public int getUserId() {
         return userId;
-    }
-
-    public int getParentQuestionId() {
-        return parentQuestionId;
     }
 
     public String getfName() {

@@ -7,14 +7,35 @@ public class Question {
     private int questionId;
     private String question;
     private int userId;
+    private String subject;
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
     public Question()
     {
 
     }
-    public Question(int question_id, String question, int userID) {
-        this.questionId = question_id;
+
+    public Question(String subject, String question) {
         this.question = question;
-        userId = userID;
+        this.subject = subject;
+    }
+
+    public Question(int questionId, String question, int userId, String subject) {
+        this.questionId = questionId;
+        this.question = question;
+        this.userId = userId;
+        this.subject = subject;
+    }
+
+    public Question(String subject, String question, int userId) {
+        this.question = question;
+        this.userId = userId;
+        this.subject = subject;
     }
 
     public int getQuestionId() {

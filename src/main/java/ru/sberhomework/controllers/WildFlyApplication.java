@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -15,12 +16,12 @@ import java.sql.SQLException;
 @EnableAutoConfiguration
 @Configuration
 public class WildFlyApplication  {
-    private final String Username = "postgres";
-    private final String password = "root";
-    private final String HOSTNAME = "jdbc:postgresql://localhost:5432/HomeWork";
+    private static final String Username = "postgres";
+    private static final String password = "root";
+    private static final String HOSTNAME = "jdbc:postgresql://localhost:5432/HomeWork";
     //Переписать с использованием .properties и @Value.
     @Bean
-    public ComboPooledDataSource getPool(){
+    public ComboPooledDataSource configurePool(){
         ComboPooledDataSource cpds = new ComboPooledDataSource();
         cpds.setJdbcUrl(HOSTNAME);
         cpds.setUser(Username);
