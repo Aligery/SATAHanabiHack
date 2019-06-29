@@ -1,4 +1,4 @@
-package ru.sberhomework.controllers;
+package ru.hanabihack.service.repository;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.springframework.boot.SpringApplication;
@@ -6,16 +6,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-
-import javax.sql.DataSource;
-import java.sql.SQLException;
 
 
 @ComponentScan
 @EnableAutoConfiguration
 @Configuration
-public class WildFlyApplication  {
+public class MainApplictaion {
     private static final String Username = "postgres";
     private static final String password = "root";
     private static final String HOSTNAME = "jdbc:postgresql://localhost:5432/HomeWork";
@@ -38,7 +34,8 @@ public class WildFlyApplication  {
     //Очень много Hard кода в контроллерах, можно зарефакторить на просто красивый класс с перегрузками (при желание)
     public static void main(String[] args)
     {
-        SpringApplication.run(WildFlyApplication.class, args);
+        SpringApplication.run(MainApplictaion.class, args);
 
     }
+
 }
